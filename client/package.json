@@ -1,7 +1,7 @@
 {
   "main": "app/electron/main.js",
   "scripts": {
-    "dev": "concurrently -k \"cd app && vite\" \"npm:electron-dev\"",
+    "dev": "concurrently -k \"cd app && npx vite\" \"npm:electron-dev\"",
     "electron-dev": "wait-on http://localhost:5173 && cross-env ELECTRON_START_URL=http://localhost:5173 electron .",
     "build": "cd app && npm run build",
     "preview": "cd app && npm run preview"

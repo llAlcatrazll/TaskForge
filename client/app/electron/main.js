@@ -6,8 +6,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 1200,
-        height: 800,
+        width: 1800,
+        height: 966,
+        resizable: false,
+        // frame: false,
+        transparent: false,
         webPreferences: {
             preload: path.join(__dirname, 'preload.cjs'),
         },
@@ -20,13 +23,6 @@ function createWindow() {
         win.loadFile(path.join(__dirname, '../dist/index.html'));
     }
 }
-// win.webContents.on('console-message', (event, level, message, line, sourceId) => {
-//     if (message.includes("Autofill")) {
-//         // Ignore
-//         return;
-//     }
-//     console.log(message);
-// });
 
 app.whenReady().then(() => {
     createWindow();
