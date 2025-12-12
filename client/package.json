@@ -1,0 +1,15 @@
+{
+  "main": "app/electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k \"cd app && vite\" \"npm:electron-dev\"",
+    "electron-dev": "wait-on http://localhost:5173 && cross-env ELECTRON_START_URL=http://localhost:5173 electron .",
+    "build": "cd app && npm run build",
+    "preview": "cd app && npm run preview"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^39.2.6",
+    "wait-on": "^8.0.1"
+  }
+}

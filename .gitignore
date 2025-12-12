@@ -1,0 +1,22 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Builds
+dist/
+build/
+web-build/
+expo-build/
+*.apk
+*.aab
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
