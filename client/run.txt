@@ -1,3 +1,5 @@
 cd client
 
 D:\TaskForge\clinet> npm run dev
+
+if not rendering - npm run dev on app then cd to client to npm run dev again
