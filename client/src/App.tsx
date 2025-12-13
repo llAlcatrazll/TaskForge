@@ -1,12 +1,13 @@
-import LoginPage from "./pages/LoginPage";
+import { Route, Routes } from "react-router-dom";
+import Login from "./pages/LoginPage";
+import Landing from "./pages/LandingPage";
+
 function App() {
   return (
-    <>
-      <div>
-        <LoginPage></LoginPage>
-        <p className="bg-red-700">wew</p>
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/landing" element={<Landing />} />
+    </Routes>
   );
 }
 
