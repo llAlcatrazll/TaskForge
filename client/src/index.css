@@ -1,6 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 :root {
     /* Primary Colors */
@@ -21,4 +23,10 @@
     --bright-O-action: #AA5029;
     /* Font Colors */
 
+
+
 }
+
+/* * {
+    font-family: 'Poppins';
+} */
