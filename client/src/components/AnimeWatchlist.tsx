@@ -15,9 +15,9 @@ export default function AnimeWatchlist() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-row ">
+    <div className=" flex flex-row w-full">
       {/* CENTER SCROLL */}
-      <main className="bg-[#1E232F] flex-1 flex flex-col p-4">
+      <main className="bg-[#1E232F] flex-1 flex flex-col w-full p-4">
         <div className="h-[500px] bg-[--dark-D-blue] aspect-3/2">showcase</div>
         <div className=" mt-5">
           <p className="font-bold">Trending</p>

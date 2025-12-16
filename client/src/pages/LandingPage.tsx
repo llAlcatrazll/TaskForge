@@ -11,11 +11,18 @@ import SteamTracker_Sidebar from "../components/SteamTracker_Sidebar";
 import AnimeWatchlist_Sidebar from "../components/AnimeWatchlist_Sidebar";
 import AppTimeout_Sidebar from "../components/AppTimeout_Sidebar";
 import MoneyTracker_Sidebar from "../components/MoneyTracker_Sidebar";
+import SideBar_Menus from "../components/SideBar_Menus";
+import SideBar_Profile from "../components/SideBar_Profile";
+import { FaSteam } from "react-icons/fa";
+import { TbChecklist } from "react-icons/tb";
+import { VscLayoutSidebarLeft, VscLayoutSidebarLeftOff } from "react-icons/vsc";
+import { SiCrunchyroll, SiPointy } from "react-icons/si";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 export default function LandingPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [activePage, setActivePage] = useState("anime-watchlist");
-  const [activeSidebar, setActiveSidebar] = useState("animewatchlist_sidebar");
+  // const [activeSidebar, setActiveSidebar] = useState("animewatchlist_sidebar");
   const navigate = useNavigate();
 
   const goToLogin = useCallback(() => {
@@ -86,13 +93,7 @@ export default function LandingPage() {
 
   const Sidebar = useMemo(
     () => (
-      <div className="h-full bg-[--dark-D-blue] flex flex-col w-[346.15px]">
-        SIDEBAR - COLLAPSABLE
-        <button onClick={toggleSidebar}>Hide Sidebar</button>
-        {/* <ToDolist_Sidebar
-          activePage={activePage}
-          setActivePage={setActivePage}
-        /> */}
+      <div className="h-full bg-[--dark-D-blue] flex flex-col w-auto">
         {RenderedSidebar}
       </div>
     ),
@@ -106,57 +107,68 @@ export default function LandingPage() {
   return (
     <div className="bg-[--medium-D-blue] h-screen text-white flex flex-row">
       {/* MAIN WRAPPER */}
-      <div className="h-full w-[74px]">
+      <div className="h-full w-[60px] flex flex-col justify-between">
         {/* SIDEBAR */}
-        <button onClick={goToLogin}>Back</button>
-        <button onClick={toggleSidebar} className="mb-[50px]">
-          Show Sidebar
-        </button>
-        <div className="flex flex-col">
-          <button onClick={() => handleSetActivePage("anime-watchlist")}>
-            anime
-          </button>
-          <button onClick={() => handleSetActivePage("steam-tracker")}>
-            steam
-          </button>
-          <button onClick={() => handleSetActivePage("app-timeout")}>
-            app
-          </button>
-          <button onClick={() => handleSetActivePage("to-do-list:calendar")}>
-            todo
-          </button>
-          <button onClick={() => handleSetActivePage("money-tracker")}>
-            money
-          </button>
+        {/* <button onClick={goToLogin} className="w-full">
+          Back
+        </button> */}
+        <div>
+          {" "}
+          {isOpen ? (
+            <button onClick={toggleSidebar} className="mb-10 flex mt-2 mx-auto">
+              <VscLayoutSidebarLeftOff size={25} color="var(--medium-gray)" />
+            </button>
+          ) : (
+            <button onClick={toggleSidebar} className="mb-10 flex mt-2 mx-auto">
+              <VscLayoutSidebarLeft size={25} color="var(--medium-gray)" />
+            </button>
+          )}
+          <div className="flex flex-col">
+            <button
+              onClick={() => handleSetActivePage("anime-watchlist")}
+              className="flex mx-auto mb-6"
+            >
+              <SiCrunchyroll size={27} color="var(--medium-gray)" />
+            </button>
+            <button
+              onClick={() => handleSetActivePage("steam-tracker")}
+              className="flex mx-auto mb-6"
+            >
+              <FaSteam size={27} color="var(--medium-gray)" />
+            </button>
+            <button
+              onClick={() => handleSetActivePage("app-timeout")}
+              className="flex mx-auto mb-6"
+            >
+              <SiPointy size={27} color="var(--medium-gray)" />
+            </button>
+            <button
+              onClick={() => handleSetActivePage("to-do-list:calendar")}
+              className="flex mx-auto mb-6"
+            >
+              <TbChecklist size={27} color="var(--medium-gray)" />
+            </button>
+            <button
+              onClick={() => handleSetActivePage("money-tracker")}
+              className="flex mx-auto mb-6"
+            >
+              <RiMoneyDollarCircleFill size={27} color="var(--medium-gray)" />
+            </button>
+          </div>
+        </div>
+        <div className="mt-auto flex flex-col">
+          <div>
+            <SideBar_Menus />
+          </div>
+          <div>
+            <SideBar_Profile />
+          </div>
         </div>
       </div>
       {!isOpen && Sidebar}
-      <div className="flex-1 h-full overflow-x-hidden overflow-y-hidden">
+      <div className="flex-1 h-full overflow-hidden">
         {/* flex-1 take up remaining space =D */}
-        <div className="h-[55px] text-black flex flex-row justify-between">
-          <div className="flex bg-white relative text-white mb-1">
-            <p className="absolute start-0 bottom-0 ">cookies</p>
-          </div>
-          <div className="text-white flex flex-row">
-            {/* THREE BUTTONS */}
-            {headerItems.map((item) => (
-              <div
-                key={item.id}
-                className="aspect-square rounded-full mb-2 bg-[--light-D-blue] h-[38px]  mt-4 mr-2"
-              >
-                {item.icon}
-              </div>
-            ))}
-            <div className="aspect-square bg-[--light-D-blue] w-[150px] rounded-full mt-2 mr-6 flex items-center justify-end pr-1">
-              {/* PROFILE */}
-              <div className="mr-2">
-                <p>Username</p>
-              </div>
-              <div className="bg-black aspect-square w-[41px] align-content-end rounded-full"></div>
-            </div>
-          </div>
-        </div>
-        <div className="  h-full overflow-scroll flex flex-1">
+        <div className="  h-full overflow-scroll overflow-x-hidden flex flex-1">
           {/* PAGE CHANGE */}
           {RenderedPage}
         </div>
