@@ -93,25 +93,18 @@ export default function LandingPage() {
 
   const Sidebar = useMemo(
     () => (
-      <div className="h-full bg-[--dark-D-blue] flex flex-col w-auto">
+      <div className="h-full bg-[--dark-D-blue] flex flex-col w-auto transition-all duration-500 ease-in-out">
         {RenderedSidebar}
       </div>
     ),
     [toggleSidebar, activePage]
   );
-  const headerItems = [
-    { id: 1, icon: "1" },
-    { id: 2, icon: "2" },
-    { id: 3, icon: "3" },
-  ];
+
   return (
     <div className="bg-[--medium-D-blue] h-screen text-white flex flex-row">
       {/* MAIN WRAPPER */}
       <div className="h-full w-[60px] flex flex-col justify-between">
         {/* SIDEBAR */}
-        {/* <button onClick={goToLogin} className="w-full">
-          Back
-        </button> */}
         <div>
           {" "}
           {isOpen ? (

@@ -1,0 +1,7 @@
+/client: node index.js
+
+ANIME WATCHLIST
+    - https://studio.apollographql.com/sandbox/explorer
+        -> test server
+        -> dont use localhost and try apollo server 
+        -> just change url to `https://graphql.anilist.co` and stop wasting time
