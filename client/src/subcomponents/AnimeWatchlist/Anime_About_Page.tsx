@@ -1,3 +1,3 @@
 export default function Anime_About_Page() {
-  return <div>Anime_About_Page</div>;
+  return <div className="p-4">FUCK YOU</div>;
 }

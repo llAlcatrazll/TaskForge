@@ -22,27 +22,27 @@ const RANDOM10 = `query ($page: Int) {
 }`;
 
 router.get("/", async (req, res) => {
-    try {
-        const randomPage = Math.floor(Math.random() * 500) + 1;
+  try {
+    const randomPage = Math.floor(Math.random() * 500) + 1;
 
-        const response = await fetch(ANILIST_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify({
-                query: RANDOM10,
-                variables: { page: randomPage },
-            }),
-        });
+    const response = await fetch(ANILIST_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: RANDOM10,
+        variables: { page: randomPage },
+      }),
+    });
 
-        const data = await response.json();
-        res.json(data.data.Page.media);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Failed to fetch random anime" });
-    }
+    const data = await response.json();
+    res.json(data.data.Page.media);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch random anime" });
+  }
 });
 
 export default router;

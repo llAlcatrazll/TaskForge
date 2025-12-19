@@ -18,29 +18,44 @@ import { TbChecklist } from "react-icons/tb";
 import { VscLayoutSidebarLeft, VscLayoutSidebarLeftOff } from "react-icons/vsc";
 import { SiCrunchyroll, SiPointy } from "react-icons/si";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
-
+import Anime_About_Page from "../subcomponents/AnimeWatchlist/Anime_About_Page";
+// import Anime_About_Page from "../subcomponents/AnimeWatchlist/Anime_About_Page";
 export default function LandingPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [activePage, setActivePage] = useState("anime-watchlist");
   // const [activeSidebar, setActiveSidebar] = useState("animewatchlist_sidebar");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const goToLogin = useCallback(() => {
-    navigate("/");
-  }, [navigate]);
+  // const goToLogin = useCallback(() => {
+  //   navigate("/");
+  // }, [navigate]);
 
   const toggleSidebar = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
 
   const handleSetActivePage = (page: string) => {
+    console.log("Set active page to:", page);
     setActivePage(page);
   };
 
   let RenderedPage;
   switch (activePage) {
     case "anime-watchlist":
-      RenderedPage = <AnimeWatchlist />;
+      // RenderedPage = <Anime_About_Page />;
+      RenderedPage = (
+        <AnimeWatchlist
+          activePage={activePage}
+          setActivePage={(page) => {
+            console.log("LandingPage setActivePage:", page); // Debug log
+            setActivePage(page);
+          }}
+        />
+      );
+      break;
+    // DONT FORGET TO ADD CASE FOR SUBPAGES IDIOT!!!!
+    case "animewatchlist:aboutpage":
+      RenderedPage = <Anime_About_Page />;
       break;
     case "money-tracker":
       RenderedPage = <MoneyTracker />;
@@ -66,6 +81,7 @@ export default function LandingPage() {
   let RenderedSidebar: JSX.Element | null;
   switch (activePage) {
     case "anime-watchlist":
+    case "animewatchlist:aboutpage":
       RenderedSidebar = <AnimeWatchlist_Sidebar />;
       break;
     case "money-tracker":
@@ -117,6 +133,7 @@ export default function LandingPage() {
             </button>
           )}
           <div className="flex flex-col">
+            {/* ANIME WATCH LIST BUTTON */}
             <button
               onClick={() => handleSetActivePage("anime-watchlist")}
               className="flex mx-auto mb-6"
@@ -159,9 +176,9 @@ export default function LandingPage() {
         </div>
       </div>
       {!isOpen && Sidebar}
-      <div className="flex-1 h-full overflow-hidden">
+      <div className="flex-1 h-full overflow-hidden min-w-0">
         {/* flex-1 take up remaining space =D */}
-        <div className="  h-full overflow-scroll overflow-x-hidden flex flex-1">
+        <div className=" overflow-y-scroll overflow-x-hidden h-full  flex flex-1 min-w-0">
           {/* PAGE CHANGE */}
           {RenderedPage}
         </div>
