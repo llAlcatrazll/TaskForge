@@ -1,11 +1,10 @@
 type Props = {
-  activePage: string;
   setActivePage: (page: string) => void;
 };
 import { MdOutlineCheckBox } from "react-icons/md";
 import { IoCalendarNumberSharp } from "react-icons/io5";
 import { CgNotes } from "react-icons/cg";
-export default function ToDolist_Sidebar({ activePage, setActivePage }: Props) {
+export default function ToDolist_Sidebar({ setActivePage }: Props) {
   return (
     <div className="flex flex-col">
       <p className="mt-5 mb-6 font-semibold text-xl px-2 text-[--medium-gray]">

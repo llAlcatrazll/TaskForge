@@ -4,24 +4,32 @@ import fetch from "node-fetch";
 const router = express.Router();
 const ANILIST_URL = "https://graphql.anilist.co";
 
-const TOP10TRENDING = `query TOP10TRENDING {
-    Page(page: 1, perPage: 10) {
-        media(type: ANIME, sort: TRENDING_DESC) {
-            id
-            title {
-                romaji
-                english
-                native
-            }
-            status
-            coverImage {
-                large
-            }
-        }
+// GraphQL query to fetch anime details by ID
+const ANIME_DETAILS_QUERY = `query ANIME_DETAILS($id: Int) {
+  Media(id: $id, type: ANIME) {
+    id
+    title {
+      romaji
+      english
+      native
     }
+    description
+    status
+     coverImage{
+        large
+    }
+        bannerImage
+  }
 }`;
 
-router.get("/", async (req, res) => {
+// Dynamic route to fetch anime details by ID
+router.get("/:id", async (req, res) => {
+    const animeId = parseInt(req.params.id, 10); // Extract the ID from the route parameter
+    console.log("Received animeId:", animeId);
+    if (isNaN(animeId)) {
+        return res.status(400).json({ error: "Invalid anime ID" });
+    }
+
     try {
         const response = await fetch(ANILIST_URL, {
             method: "POST",
@@ -29,14 +37,22 @@ router.get("/", async (req, res) => {
                 "Content-Type": "application/json",
                 Accept: "application/json",
             },
-            body: JSON.stringify({ query: TOP10TRENDING }),
+            body: JSON.stringify({
+                query: ANIME_DETAILS_QUERY,
+                variables: { id: animeId }, // Pass the anime ID as a variable
+            }),
         });
 
         const data = await response.json();
-        res.json(data.data.Page.media);
+
+        if (data.errors) {
+            return res.status(404).json({ error: "Anime not found" });
+        }
+
+        res.json(data.data.Media); // Return the anime details
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Failed to fetch anime" });
+        res.status(500).json({ error: "Failed to fetch anime details" });
     }
 });
 

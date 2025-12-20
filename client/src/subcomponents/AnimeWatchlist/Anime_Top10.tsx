@@ -14,13 +14,14 @@ type Props = {
   type?: "trending" | "random";
   activePage: string;
   setActivePage: (page: string) => void;
+  setSelectedAnimeId: (id: number) => void;
 };
 
 export default function Anime_Top10({
   anime,
   type,
-  activePage,
   setActivePage,
+  setSelectedAnimeId,
 }: Props) {
   const emblaOptions = {
     align: "start",
@@ -42,7 +43,9 @@ export default function Anime_Top10({
               key={item.id}
               className="basis-[200px] shrink-0 grow-0 flex flex-col"
               onClick={() => {
+                console.log(`Clicked item id: ${item.id}}`);
                 console.log("Top10 Navigation ti animewatchlist");
+                setSelectedAnimeId(item.id);
                 setActivePage("animewatchlist:aboutpage");
               }}
             >

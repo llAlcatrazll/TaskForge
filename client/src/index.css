@@ -13,7 +13,11 @@
     --light-D-blue: #1E222C;
     --accent-blue: #425074;
     --ranking-blue: #00AAFF;
-
+    /* ANIME BLUE */
+    --anime-L-blue: #151F2E;
+    --anime-D-blue: #0B1622;
+    --anime-FONT-blue: #70889B;
+    --anime-HEART-red: #EC294B;
     /* Gray Accents */
     --medium-gray: #A8A8A8;
     /* ICONS */
@@ -28,6 +32,29 @@
 
 
 
+}
+
+/* Target the entire scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Target the track (the background) */
+::-webkit-scrollbar-track {
+    background: #14171D;
+}
+
+/* Target the thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #2d3342;
+    border-radius: 5px;
+    /* rounded corners */
+}
+
+/* Add a hover effect to the thumb */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 /* * {

@@ -16,11 +16,13 @@ type Anime = {
 type Props = {
   activePage: string;
   setActivePage: (page: string) => void;
+  setSelectedAnimeId: (id: number) => void;
 };
 
 export default function AnimeWatchlist_HomePage({
   activePage,
   setActivePage,
+  setSelectedAnimeId,
 }: Props) {
   const [topTen, setTopTen] = useState<Anime[]>([]);
   const [randomTen, setRandomTen] = useState<Anime[]>([]);
@@ -59,6 +61,7 @@ export default function AnimeWatchlist_HomePage({
             anime={topTen}
             activePage={activePage}
             setActivePage={setActivePage}
+            setSelectedAnimeId={setSelectedAnimeId}
           />
         </div>
       </div>
@@ -69,6 +72,7 @@ export default function AnimeWatchlist_HomePage({
             anime={randomTen}
             activePage={activePage}
             setActivePage={setActivePage}
+            setSelectedAnimeId={setSelectedAnimeId}
           />
         </div>
       </div>

@@ -23,6 +23,7 @@ import Anime_About_Page from "../subcomponents/AnimeWatchlist/Anime_About_Page";
 export default function LandingPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [activePage, setActivePage] = useState("anime-watchlist");
+  const [selectedAnimeId, setSelectedAnimeId] = useState<number | null>(null);
   // const [activeSidebar, setActiveSidebar] = useState("animewatchlist_sidebar");
   // const navigate = useNavigate();
 
@@ -47,15 +48,17 @@ export default function LandingPage() {
         <AnimeWatchlist
           activePage={activePage}
           setActivePage={(page) => {
-            console.log("LandingPage setActivePage:", page); // Debug log
+            console.log("LandingPage setActivePage:", page);
             setActivePage(page);
           }}
+          setSelectedAnimeId={setSelectedAnimeId}
+          selectedAnimeId={selectedAnimeId} // Pass selectedAnimeId here
         />
       );
       break;
     // DONT FORGET TO ADD CASE FOR SUBPAGES IDIOT!!!!
     case "animewatchlist:aboutpage":
-      RenderedPage = <Anime_About_Page />;
+      RenderedPage = <Anime_About_Page animeId={selectedAnimeId} />;
       break;
     case "money-tracker":
       RenderedPage = <MoneyTracker />;
@@ -98,12 +101,7 @@ export default function LandingPage() {
     case "to-do-list:calendar":
     case "to-do-list:tasks":
     case "to-do-list:notes":
-      RenderedSidebar = (
-        <ToDolist_Sidebar
-          activePage={activePage}
-          setActivePage={setActivePage}
-        />
-      );
+      RenderedSidebar = <ToDolist_Sidebar setActivePage={setActivePage} />;
       break;
   }
 
