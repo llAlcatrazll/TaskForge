@@ -1,3 +1,3 @@
 export default function AnimeWatchlist_Sidebar() {
-  return <div>AnimeWatchlist_Sidebar</div>;
+  return <div className="w-[350px]">AnimeWatchlist_Sidebar</div>;
 }

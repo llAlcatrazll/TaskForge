@@ -1,6 +1,7 @@
-import { parse } from "graphql";
 import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa6";
+import Anime_Details from "./Anime_About_Page_Components/Anime_Details";
+
 export default function Anime_About_Page({
   animeId,
 }: {
@@ -10,8 +11,6 @@ export default function Anime_About_Page({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Placeholder ID for now
-  // const animeId = 204293; // Replace this with a dynamic value later
   useEffect(() => {
     const fetchAnimeDetails = async () => {
       try {
@@ -46,21 +45,6 @@ export default function Anime_About_Page({
   if (!animeDetails) {
     return <div className="p-4">No anime details found.</div>;
   }
-  /*    <div className="p-4">
-      <button onClick={() => console.log("Go back")}>Back</button>
-      <div className="mt-4">
-         <img
-          src={animeDetails.coverImage.large}
-          alt={animeDetails.title.english}
-        /> 
-        <h1 className="text-2xl font-bold">
-          {animeDetails.title.english || animeDetails.title.romaji}
-        </h1>
-        <p className="mt-2">{animeDetails.description}</p>
-        <p className="mt-2">Status: {animeDetails.status}</p>
-        <p className="mt-2">Genres: {animeDetails.genres?.join(", ")}</p>
-      </div>
-    </div> */
   return (
     // --anime-L-blue: #151F2E;
     // --anime-D-blue: #0B1622;
@@ -70,12 +54,13 @@ export default function Anime_About_Page({
         <div className="absolute w-full h-[55%]  box-border">
           <img src={animeDetails.bannerImage} className="w-full opacity-50" />
         </div>
-        {/* <button
-          className="absolute z-100"
+        <button
+          className="absolute z-100 bg-[--anime-L-blue] px-4 py-3 mt-3 ml-3 rounded-lg font-bold"
           onClick={() => console.log("Go back")}
         >
           Back
-        </button> */}
+        </button>
+
         <div className="absolute z-50 w-full h-full flex  items-end">
           {/* ITEMS END BOTTOM OF DIV */}
           <div className=" ml-[100px] aspect-[12/16] h-[350px] flex flex-col">
@@ -111,12 +96,37 @@ export default function Anime_About_Page({
         </div>
       </div>
       {/* BELOW DESCRIPTION PART*/}
-      <div className=" flex flex-col items-center">
+      <div className=" flex flex-row  justify-center gap-5 pl-10">
         {/* HARDCODE WIDTH FOR FIXED CENTER LAYOUT */}
-        <div className="bg-[--anime-L-blue] mb-5 h-[200px] rounded-2 w-[1100px]">
-          anime details tab
+        <div className="w-[26%] bg-[--anime-L-blue]">
+          {/* MAP VOICE ACTORS AND STAFF */}
         </div>
-        <div className="bg-[--anime-L-blue]">anime details tab</div>
+        <div className="w-[60%]">
+          <div className="bg-[--anime-L-blue] mb-5 h-[310px] rounded-2 w-full">
+            {/* MAP ANIME DEPTH DETAILS */}
+
+            <Anime_Details
+              // JUST BASED ON ANILIST
+              details={{
+                format: animeDetails.format,
+                episodes: animeDetails.episodes,
+                duration: animeDetails.duration,
+                status: animeDetails.status,
+                month: animeDetails.month,
+                day: animeDetails.day,
+                year: animeDetails.year,
+                season: animeDetails.season,
+                averageScore: animeDetails.averageScore,
+                meanScore: animeDetails.meanScore,
+                popularity: animeDetails.popularity,
+                favourites: animeDetails.favourites,
+                source: animeDetails.source,
+                genres: animeDetails.genres,
+              }}
+            />
+          </div>
+          <div className="bg-[--anime-L-blue]">anime details tab</div>
+        </div>
       </div>
     </div>
   );
