@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaRegHeart } from "react-icons/fa6";
 import Anime_Details from "./Anime_About_Page_Components/Anime_Details";
+import Anime_Staff from "./Anime_About_Page_Components/Anime_Staff";
 
 export default function Anime_About_Page({
   animeId,
@@ -100,6 +101,7 @@ export default function Anime_About_Page({
         {/* HARDCODE WIDTH FOR FIXED CENTER LAYOUT */}
         <div className="w-[26%] bg-[--anime-L-blue]">
           {/* MAP VOICE ACTORS AND STAFF */}
+          <Anime_Staff />
         </div>
         <div className="w-[60%]">
           <div className="bg-[--anime-L-blue] mb-5 h-[310px] rounded-2 w-full">
