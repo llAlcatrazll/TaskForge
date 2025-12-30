@@ -2,7 +2,6 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { supabase } from "../supabaseClient"; // adjust path if needed
 import { supabase } from "../lib/supabase";
-import Create_AccountPage from "./Create_AccountPage";
 
 export default function LoginPage() {
   const navigate = useNavigate();

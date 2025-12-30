@@ -58,7 +58,14 @@ export default function LandingPage() {
       break;
     // DONT FORGET TO ADD CASE FOR SUBPAGES IDIOT!!!!
     case "animewatchlist:aboutpage":
-      RenderedPage = <Anime_About_Page animeId={selectedAnimeId} />;
+      RenderedPage = (
+        <Anime_About_Page
+          animeId={selectedAnimeId}
+          setActivePage={(page) => {
+            setActivePage(page);
+          }}
+        />
+      );
       break;
     case "money-tracker":
       RenderedPage = <MoneyTracker />;

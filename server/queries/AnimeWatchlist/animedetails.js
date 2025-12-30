@@ -46,7 +46,7 @@ const ANIME_DETAILS_QUERY = `query ANIME_DETAILS($id: Int) {
 // Dynamic route to fetch anime details by ID
 router.get("/:id", async (req, res) => {
   const animeId = parseInt(req.params.id, 10); // Extract the ID from the route parameter
-  console.log("Received animeId:", animeId);
+  // console.log("Received animeId:", animeId);
   if (isNaN(animeId)) {
     return res.status(400).json({ error: "Invalid anime ID" });
   }

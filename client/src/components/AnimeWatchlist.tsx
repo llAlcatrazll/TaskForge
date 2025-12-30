@@ -28,7 +28,12 @@ export default function AnimeWatchlist({
       );
     case "animewatchlist:aboutpage":
       console.log("anime about page");
-      return <Anime_About_Page animeId={selectedAnimeId} />; // Pass selectedAnimeId here
+      return (
+        <Anime_About_Page
+          animeId={selectedAnimeId}
+          setActivePage={setActivePage}
+        />
+      ); // Pass selectedAnimeId here
     default:
       console.log("no matching case for active page", activePage);
       return null;

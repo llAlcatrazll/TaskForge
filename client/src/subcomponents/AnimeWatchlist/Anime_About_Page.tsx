@@ -3,11 +3,12 @@ import { FaRegHeart } from "react-icons/fa6";
 import Anime_Details from "./Anime_About_Page_Components/Anime_Details";
 import Anime_Staff from "./Anime_About_Page_Components/Anime_Staff";
 
-export default function Anime_About_Page({
-  animeId,
-}: {
+type Props = {
   animeId: number | null;
-}) {
+  setActivePage: (page: string) => void;
+};
+
+export default function Anime_About_Page({ animeId, setActivePage }: Props) {
   const [animeDetails, setAnimeDetails] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -52,12 +53,20 @@ export default function Anime_About_Page({
     <div className="flex flex-col w-full">
       {/* TOP IMAGE DESCRIPTION PART */}
       <div className="bg-[--anime-L-blue] aspect-[14/5] relative mb-5">
-        <div className="absolute w-full h-[55%]  box-border">
-          <img src={animeDetails.bannerImage} className="w-full opacity-50" />
+        <div className="absolute w-full h-[55%] pointer-events-none  box-border">
+          <img
+            src={animeDetails.bannerImage}
+            className="object-fit-cover opacity-50 "
+          />
         </div>
         <button
-          className="absolute z-100 bg-[--anime-L-blue] px-4 py-3 mt-3 ml-3 rounded-lg font-bold"
-          onClick={() => console.log("Go back")}
+          className="absolute bg-[--anime-L-blue] px-4 py-3 mt-3 ml-3 rounded-lg font-bold"
+          style={{ zIndex: "100" }}
+          // onClick={() => alert("clicked")}
+          onClick={() => {
+            setActivePage("anime-watchlist");
+            console.log("Go fucking back");
+          }}
         >
           Back
         </button>
