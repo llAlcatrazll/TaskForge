@@ -1,5 +1,11 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useState } from "react";
+import { FaCirclePlay } from "react-icons/fa6";
+import { FaClock } from "react-icons/fa6";
+import { FaCalendarDay } from "react-icons/fa6";
+import { FaCircleLeft } from "react-icons/fa6";
+import { FaCircleRight } from "react-icons/fa6";
+import FallbackImage from "../../assets/fallback/fallback_image.jpg";
 type Props = {
   anime: {
     id: number;
@@ -11,6 +17,14 @@ type Props = {
       large: string;
     };
     bannerImage: string; // Add this field to match the backend response
+    format: string;
+    duration: string;
+    startDate: {
+      day: string;
+      month: string;
+      year: string;
+    };
+    description: string;
   }[];
   type?: "trending" | "random";
   activePage: string;
@@ -59,7 +73,7 @@ export default function Anime_Featured({
               }}
             >
               <img
-                src={item.bannerImage}
+                src={item.bannerImage ? item.bannerImage : FallbackImage}
                 loading="lazy"
                 decoding="async"
                 className="h-full w-full object-cover"
@@ -70,12 +84,59 @@ export default function Anime_Featured({
 
         {/* Overlay info: show only for current slide */}
         {currentAnime && (
-          <div className="absolute top-0 w-[30%] left-0 h-full z-20 items-center justify-center text-center flex flex-col bg-[--dark-D-blue]">
-            <p className="text-7xl">{selectedIndex + 1}</p>
-            <p>{currentAnime.title.english ?? currentAnime.title.romaji}</p>
-            <div className="flex gap-10 mt-4">
-              <p onClick={() => emblaApi?.scrollPrev()}>left</p>
-              <p onClick={() => emblaApi?.scrollNext()}>right</p>
+          <div
+            className="absolute top-0 w-[60%] pr-64 left-0 h-full z-20  justify-center pl-10 flex flex-col"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(14,18,25,0.9) 70%, rgba(14,18,25,0) 100%)",
+            }}
+          >
+            <p
+              className={`text-xl ${
+                selectedIndex >= 3
+                  ? "text-[--ranking-blue]"
+                  : "text-[--bright-Y-action]"
+              }`}
+            >
+              {selectedIndex + 1}# Spotlight
+            </p>
+            <p className="text-3xl font-bold">
+              {currentAnime.title.english ?? currentAnime.title.romaji}
+            </p>
+            <div className="mt-3 flex gap-3">
+              {" "}
+              <div className="flex items-center">
+                <FaCirclePlay className="mr-2 " color="var(--medium-gray)" />
+                {currentAnime.format}
+              </div>
+              <div className="flex items-center">
+                <FaClock className="mr-2 " color="var(--medium-gray)" />
+                {currentAnime.duration}
+              </div>
+              <div className="flex items-center gap-4">
+                <FaCalendarDay className="mr-2 " color="var(--medium-gray)" />
+                {currentAnime.startDate.month} - {currentAnime.startDate.day} -
+                {currentAnime.startDate.year}
+              </div>
+            </div>
+
+            <p className="text-lg  line-clamp-4 mt-2 ">
+              {/* MAKE THIS SAFE THING */}
+              <p
+                className="text-lg line-clamp-4 mt-2"
+                dangerouslySetInnerHTML={{
+                  __html: currentAnime.description ?? "",
+                }}
+              />
+            </p>
+            <div className="flex gap-10  bottom-10 w-[80%]">
+              {/* FIX THIS */}
+              <p onClick={() => emblaApi?.scrollPrev()}>
+                <FaCircleLeft size={30} />
+              </p>
+              <p onClick={() => emblaApi?.scrollNext()}>
+                <FaCircleRight size={30} />
+              </p>
             </div>
           </div>
         )}

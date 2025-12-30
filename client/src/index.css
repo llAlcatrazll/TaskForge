@@ -7,8 +7,14 @@
 :root {
     /* Primary Colors */
     --medium-D-blue: #14171D;
+
     /* ^^general fallback background color */
-    --dark-D-blue: #0E1219;
+    :root {
+        --dark-D-blue: #0E1219;
+        --dark-D-blue-rgb: 14 18 25;
+        /* REQUIRED for opacity/gradients */
+    }
+
     --mediumlight-D-blue: #1B1F28;
     --light-D-blue: #1E222C;
     --accent-blue: #425074;

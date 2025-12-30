@@ -14,6 +14,25 @@ type Anime = {
   };
   bannerImage: string;
 };
+type FeaturedAnime = {
+  id: number;
+  title: {
+    romaji: string;
+    english: string;
+  };
+  coverImage: {
+    large: string;
+  };
+  bannerImage: string;
+  format: string;
+  duration: string;
+  startDate: {
+    day: string;
+    month: string;
+    year: string;
+  };
+  description: string;
+};
 
 type Props = {
   activePage: string;
@@ -27,7 +46,7 @@ export default function AnimeWatchlist_HomePage({
   setSelectedAnimeId,
 }: Props) {
   const [topTen, setTopTen] = useState<Anime[]>([]);
-  const [featured, setFeatured] = useState<Anime[]>([]);
+  const [featured, setFeatured] = useState<FeaturedAnime[]>([]);
   const [randomTen, setRandomTen] = useState<Anime[]>([]);
   const [loading, setLoading] = useState(true);
 

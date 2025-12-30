@@ -25,27 +25,35 @@ const TOP10TRENDING = `query TOP10TRENDING {
       coverImage {
         large
       }
+      format
+      duration
+      startDate {
+        day
+        month
+        year
+      }
+      description
     }
   }
 }`;
 
 router.get("/", async (req, res) => {
-    try {
-        const response = await fetch(ANILIST_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify({ query: TOP10TRENDING }),
-        });
+  try {
+    const response = await fetch(ANILIST_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ query: TOP10TRENDING }),
+    });
 
-        const data = await response.json();
-        res.json(data.data.Page.media);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Failed to fetch anime" });
-    }
+    const data = await response.json();
+    res.json(data.data.Page.media);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch anime" });
+  }
 });
 
 export default router;
