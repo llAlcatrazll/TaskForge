@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Anime_Top10 from "./Anime_Top10";
+import Anime_Featured from "./Anime_Featured";
 // converted to reusable component with passable variables so no excess files
 
 type Anime = {
@@ -11,6 +12,7 @@ type Anime = {
   coverImage: {
     large: string;
   };
+  bannerImage: string;
 };
 
 type Props = {
@@ -25,6 +27,7 @@ export default function AnimeWatchlist_HomePage({
   setSelectedAnimeId,
 }: Props) {
   const [topTen, setTopTen] = useState<Anime[]>([]);
+  const [featured, setFeatured] = useState<Anime[]>([]);
   const [randomTen, setRandomTen] = useState<Anime[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -46,13 +49,29 @@ export default function AnimeWatchlist_HomePage({
       })
       .catch(console.error);
   }, []);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/anime/featured")
+      .then((res) => res.json())
+      .then((data) => {
+        setFeatured(data);
+        setLoading(false);
+      })
+      .catch(console.error);
+  }, []);
 
   if (loading) return <p>Loading…</p>;
 
   return (
     <main className="bg-[#1E232F] flex-1 flex flex-col w-full px-4 py-2">
-      <div className="w-full bg-gray-500 ">
-        <div className="aspect-[16/7] w-full bg-red-400">wew</div>
+      <div className="w-ful ">
+        <div className="aspect-[16/7] w-full ">
+          <Anime_Featured
+            anime={featured}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            setSelectedAnimeId={setSelectedAnimeId}
+          />
+        </div>
       </div>
       <div className=" mt-5">
         <p className="font-bold text-2xl mb-1">Trending</p>
