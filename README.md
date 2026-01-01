@@ -1,3 +1,59 @@
+# TaskForge
+
+TaskForge is a modular productivity and tracking application built with **React**, **TypeScript**, **Supabase**, and **PostgreSQL**, combining personal utilities with an **anime tracking system powered by AniList GraphQL**.
+
+The app is designed to be fast, extensible, and desktop-ready (Electron-compatible), with a strong focus on UI/UX, performance, and data integrity.
+
+---
+
+## ✨ Features
+
+### 🎌 Anime Watchlist Module
+- Trending, Featured, and Random anime discovery
+- Detailed anime pages (description, staff, format, duration, dates)
+- AniList GraphQL integration
+- Embla-powered featured carousel
+- Client-side caching for instant navigation
+
+### 🧠 Productivity Modules
+- To-do list (tasks, calendar, notes)
+- Money tracker
+- App usage timeout
+- Steam tracker (planned)
+
+### 🔐 Authentication
+- Supabase Auth (email/password)
+- Secure session handling
+- Extended user profile stored in PostgreSQL
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React + TypeScript
+- Tailwind CSS
+- Embla Carousel
+- TanStack Query (React Query)
+- React Router
+
+### Backend
+- Node.js
+- Express
+- AniList GraphQL API
+- Supabase (PostgreSQL + Auth)
+
+---
+
+## ⚡ Performance & Caching
+
+- Anime data is cached using **TanStack Query**
+- Trending & Featured lists use time-based invalidation
+- Random anime is cached per session to prevent unnecessary refetching
+- Navigating away and back to pages does not trigger reloads
+
+---
+
 ```mermaid
 erDiagram
     %% ======================
