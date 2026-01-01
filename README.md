@@ -15,11 +15,29 @@ The app is designed to be fast, extensible, and desktop-ready (Electron-compatib
 - Embla-powered featured carousel
 - Client-side caching for instant navigation
 
-### 🧠 Productivity Modules
-- To-do list (tasks, calendar, notes)
-- Money tracker
-- App usage timeout
-- Steam tracker (planned)
+### 🧠 Other Productivity Modules
+
+- 📝 To-do List
+- 💰 Money Tracker
+- 🎮 Steam Tracker
+- 📚 Manhwa Tracker
+- ⏱️ App Timeout
+- 🖼️ Background Remover
+- 💻 Code Snippets
+- 🕒 PC Uptime Tracker
+- 📊 PC App Usage Tracker
+- 🧹 Storage Discoverer / Cleaner / Transfer
+- 🔔 Daily Reminder
+- 🎯 Work Focus Mode
+- 🤖 Auto-Cleanup Suggestions
+- 💳 Subscription Manager
+- 🔐 File Vault
+- 🌐 Universal App Notification Collection
+- 👥 Universal App Presence Detector (Friends Online / Offline)
+- 📋-  Clipboard Manager
+- 🚀 Quick Home Launcher
+- 🧩 Custom Desktop Widgets
+- 🐙 GitHub Tracker
 
 ### 🔐 Authentication
 - Supabase Auth (email/password)
