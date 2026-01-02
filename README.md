@@ -63,15 +63,6 @@ The app is designed to be fast, extensible, and desktop-ready (Electron-compatib
 
 ---
 
-## ⚡ Performance & Caching
-
-- Anime data is cached using **TanStack Query**
-- Trending & Featured lists use time-based invalidation
-- Random anime is cached per session to prevent unnecessary refetching
-- Navigating away and back to pages does not trigger reloads
-
----
-
 ```mermaid
 erDiagram
     %% ======================
